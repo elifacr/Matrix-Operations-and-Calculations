@@ -1,0 +1,86 @@
+use "std/conv"
+use "std/os"
+
+fn MatrixMultiplication(A: [][]int, B: [][]int, mut C: [][]int) {
+	if (len(A[0]) != len(B)) {
+		println("Matrices cannot be multiplied. The number of columns of the first matrix must be equal to the number of rows of the second matrix.")
+		ret
+	}
+
+	for i in A {
+		for j in B[0] {
+			C[i][j] = 0
+			for k in A[0] {
+				C[i][j] += A[i][k] * B[k][j]
+			}
+		}
+	}
+}
+
+fn matrixPrinting(matrix: [][]int) {
+	for _, row in matrix {
+		for _, cell in row {
+			print(cell)
+			print(" ")
+		}
+		print("\n")
+	}
+}
+
+fn main() {
+	print("Enter the number of rows of the first matrix: ")
+	rowA := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("Enter the number of columns of the first matrix: ")
+	columnA := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("Enter the number of rows of the second matrix: ")
+	rowB := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("Enter the number of columns of the second matrix: ")
+	columnB := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("\n\n")
+
+	mut A := make([][]int, rowA)
+	for i in A {
+		A[i] = make([]int, columnA)
+	}
+
+	mut B := make([][]int, rowB)
+	for i in B {
+		B[i] = make([]int, columnB)
+	}
+
+	mut C := make([][]int, rowA)
+	for i in A {
+		C[i] = make([]int, columnB)
+	}
+
+	println("Enter the elements of the first matrix:")
+	for i in A {
+		print("Enter the elements of row ")
+		print(i + 1)
+		print(" in order.\n")
+		for j in A[0] {
+			A[i][j] = conv::Atoi(os::Stdin().ReadLine()!)!
+		}
+	}
+	print("\n\n")
+
+	println("Enter the elements of the second matrix:")
+	for i in A[0] {
+		print("Enter the elements of row ")
+		print(i + 1)
+		print(" in order.\n")
+		for j in B[0] {
+			B[i][j] = conv::Atoi(os::Stdin().ReadLine()!)!
+		}
+	}
+	print("\n\n")
+
+	MatrixMultiplication(A, B, C)
+
+	println("Result matrix:")
+	matrixPrinting(C)
+}
