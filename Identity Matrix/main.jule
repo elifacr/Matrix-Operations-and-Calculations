@@ -1,0 +1,25 @@
+use "std/conv"
+use "std/os"
+
+fn createIdentityMatrix(size: int) {
+	mut i := 0
+	for i < size; i++{
+		mut j := 0
+		for j < size; j++ {
+			if (i == j) {
+				print("1 ")
+			} else {
+				print("0 ")
+			}
+		}
+		print("\n")
+	}
+}
+
+fn main() {
+	print("Enter the size of the identity matrix: ")
+	size := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	println("Identity matrix:")
+	createIdentityMatrix(size)
+}
