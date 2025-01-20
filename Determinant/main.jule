@@ -1,0 +1,86 @@
+use "std/conv"
+use "std/os"
+
+fn cofactorMatrix(matrix: [][]int, mut temp: [][]int, p: int, q: int, n: int) {
+	mut i := 0
+	mut j := 0
+	mut row := 0
+	for row < n; row++ {
+		mut column := 0
+		for column < n; column++ {
+			if (row != p && column != q) {
+				temp[i][j] = matrix[row][column]
+				j++
+				if (j == n - 1) {
+					j = 0
+					i++
+				}
+			}
+		}
+	}
+}
+
+fn determinant(matrix: [][]int, n: int): int {
+	if (n == 2) {
+		ret matrix[0][0]*matrix[1][1] - matrix[0][1]*matrix[1][0]
+	}
+
+	// Determinant calculation by cofactor expansion method.
+	mut temp := make([][]int, n)
+	for i in temp {
+		temp[i] = make([]int, n)
+	}
+
+	mut det := 0
+	mut sign := 1
+
+	mut i := 0
+	for i < n; i++ {
+		cofactorMatrix(matrix, temp, 0, i, n)
+		det += sign * matrix[0][i] * determinant(temp, n - 1)
+		sign = -sign
+	}
+
+	ret det
+}
+
+fn main() {
+	print("Enter the size of the matrix: ")
+	size := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	mut matrix := make([][]int, size)
+	for i in matrix {
+		matrix[i] = make([]int, size)
+	}
+
+	println("\nEnter the matrix:")
+	mut i := 0
+	for i < size; i++ {
+		print("Row ")
+		print(i + 1)
+		print(":\n")
+		mut j := 0
+		for j < size; j++ {
+			matrix[i][j] = conv::Atoi(os::Stdin().ReadLine()!)!
+		}
+	}
+
+	println("\nMatrix:")
+	i = 0
+	for i < size; i++ {
+		mut j := 0
+		for j < size; j++ {
+			print(matrix[i][j])
+			print(" ")
+		}
+		print("\n")
+	}
+
+	if (size == 1) {
+		print("\nThe size of the matrix must be greater than 1.")
+	} else {
+		det := determinant(matrix, size)
+		print("\nDeterminant: ")
+		print(det)
+	}
+}
