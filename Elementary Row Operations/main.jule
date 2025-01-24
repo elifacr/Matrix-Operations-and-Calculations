@@ -1,0 +1,124 @@
+use "std/conv"
+use "std/os"
+
+// Exchange any two rows.
+fn rowSwap(matrix: [][]f64, mut resultMatrix: [][]f64, row1: int, row2: int, column: int) {
+	for j in resultMatrix {
+		resultMatrix[j] = append([]f64(nil), matrix[j]...)
+	}
+	
+	mut i := 0
+	for i < column; i++ {
+		resultMatrix[row1][i], resultMatrix[row2][i] = resultMatrix[row2][i], resultMatrix[row1][i]
+	}
+}
+
+// Multiply any row by a constant.
+fn scalarMultiplication(matrix: [][]f64, mut resultMatrix: [][]f64, row1: int, column: int, number: f64) {
+	for j in resultMatrix {
+		resultMatrix[j] = append([]f64(nil), matrix[j]...)
+	}
+
+	mut i := 0
+	for i < column; i++ {
+		resultMatrix[row1][i] *= number
+	}
+}
+
+// Add a multiple of one row to another row.
+fn rowSum(matrix: [][]f64, mut resultMatrix: [][]f64, row1: int, row2: int, column: int, number: f64) {
+	for j in resultMatrix {
+		resultMatrix[j] = append([]f64(nil), matrix[j]...)
+	}
+
+	mut i := 0
+	for i < column; i++ {
+		resultMatrix[row1][i] = resultMatrix[row2][i]*number + resultMatrix[row1][i]
+	}
+}
+
+fn printMatrix(matrix: [][]f64, row: int, column: int) {
+	mut i := 0
+	for i < row; i++ {
+		mut j := 0
+		for j < column; j++ {
+			print(matrix[i][j])
+			print(" ")
+		}
+		print("\n")
+	}
+}
+
+fn main() {
+	print("Enter the number of rows of the matrix: ")
+	row := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("Enter the number of columns of the matrix: ")
+	column := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	mut matrix := make([][]f64, row)
+	for i in matrix {
+		matrix[i] = make([]f64, column)
+	}
+
+	print("\nEnter the matrix:\n")
+	mut i := 0
+	for i < row; i++ {
+		print("Row ")
+		print(i + 1)
+		print(":\n")
+		mut j := 0
+		for j < column; j++ {
+			matrix[i][j] = conv::ParseFloat(os::Stdin().ReadLine()!, 64)!
+		}
+	}
+
+	mut resultMatrix := make([][]f64, row)
+	for j in resultMatrix {
+		resultMatrix[j] = make([]f64, column)
+	}
+
+	mut choice := 0
+
+	for choice != 4 {
+		println("\nMatrix:")
+		printMatrix(matrix, row, column)
+
+		print("\nSelect the operation.\n")
+		print("1. Swap row.\n")
+		print("2. Multiply a row by another number.\n")
+		print("3. Add any multiple of a row to another number.\n")
+		print("4. Exit.\n")
+		print("Your choice: ")
+		choice = conv::Atoi(os::Stdin().ReadLine()!)!
+
+		match choice {
+		| 1:
+			print("\nEnter the index of the 2 lines to be swapped: ")
+			row1 := conv::Atoi(os::Stdin().ReadLine()!)!
+			row2 := conv::Atoi(os::Stdin().ReadLine()!)!
+			rowSwap(matrix, resultMatrix, row1 - 1, row2 - 1, column)
+		| 2:
+			print("\nEnter the row of the matrix to be multiplied: ")
+			row3 := conv::Atoi(os::Stdin().ReadLine()!)!
+			print("Enter the number to multiply: ")
+			number := conv::ParseFloat(os::Stdin().ReadLine()!, 64)!
+			scalarMultiplication(matrix, resultMatrix, row3 - 1, column, number)
+		| 3:
+			print("\nEnter the row of the matrix to be added: ")
+			row4 := conv::Atoi(os::Stdin().ReadLine()!)!
+			print("Enter the row of the matrix to be multiplied: ")
+			row5 := conv::Atoi(os::Stdin().ReadLine()!)!
+			print("Enter the scalar number: ")
+			number1 := conv::ParseFloat(os::Stdin().ReadLine()!, 64)!
+			rowSum(matrix, resultMatrix, row4 - 1, row5 - 1, column, number1)
+		|:
+		}
+
+		if (choice >= 1 && choice <= 3) {
+			print("\nResult Matrix:\n")
+			printMatrix(resultMatrix, row, column)
+		}
+		print("\n-------------------------------------\n")
+	}
+}
