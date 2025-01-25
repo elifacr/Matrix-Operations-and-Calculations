@@ -31,9 +31,17 @@ Performs operations and calculations on matrices.
      
   
 - ### <ins> **[Trace of a Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Trace%20of%20a%20Matrix)** </ins>
+     *Calculates the trace of the matrix and prints it to the screen.*
   
 - ### <ins> **[Symmetric Matrix Control](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Symmetric%20Matrix%20Control)** </ins>
+     > *Square matrices whose symmetric elements are equal to each other with respect to their main diagonal are called symmetric matrices.*
+
+     
+     *This program checks whether the matrix is ​​symmetric or not and gives the result as screen output.*
   
 - ### <ins> **[Matrix Scalar Multiplication](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Matrix%20Scalar%20Multiplication)** </ins>
   
 - ### <ins> **[Elementary Row Operations](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Elementary%20Row%20Operations)** </ins>
+
+- ### <ins> **[Elementary Column Operations](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Elementary%20Column%20Operations)** </ins>
+  
