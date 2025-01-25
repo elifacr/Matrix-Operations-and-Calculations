@@ -2,7 +2,7 @@
 Calculates the determinant of the entered matrix.
 - ## **If the dimension of the matrix is ​​2:**
   > *A = {{a, b,}, {c, d}}*                     
-  > *det(A) = a*d - b*c*      
+  > *det(A) = ad - bc*      
                   
   Calculates the determinant using the method above.
   
