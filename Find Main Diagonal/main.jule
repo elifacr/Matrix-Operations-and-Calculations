@@ -1,0 +1,60 @@
+use "std/conv"
+use "std/os"
+
+fn findMainDiagonal(matrix: [][]f64, mut mainDiagonal: [][]f64, size: int) {
+	mut i := 0
+	for i < size; i++ {
+		mainDiagonal[0][i] = matrix[i][i]
+	}
+}
+
+fn printMatrix(matrix: [][]f64, row: int, column: int) {
+	mut i := 0
+	for i < row; i++ {
+		mut j := 0
+		for j < column; j++ {
+			print(matrix[i][j])
+			print(" ")
+		}
+		print("\n")
+	}
+}
+
+fn main() {
+	print("Enter the number of rows of the matrix: ")
+	row := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("Enter the number of columns of the matrix: ")
+	column := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	if (row == column) {
+		mut matrix := make([][]f64, row)
+		for i in matrix {
+			matrix[i] = make([]f64, column)
+		}
+
+		print("\nEnter the matrix:\n")
+		mut i := 0
+		for i < row; i++ {
+			print("Row ")
+			print(i + 1)
+			print(":\n")
+			mut j := 0
+			for j < column; j++ {
+				matrix[i][j] = conv::ParseFloat(os::Stdin().ReadLine()!, 64)!
+			}
+		}
+		print("\nMatriX:\n")
+		printMatrix(matrix, row, column)
+
+		mut mainDiagonal := make([][]f64, 1)
+		for j in mainDiagonal {
+			mainDiagonal[j] = make([]f64, row)
+		}
+		findMainDiagonal(matrix, mainDiagonal, row)
+		print("\nThe main diagonal elements of this matrix are:\n")
+		printMatrix(mainDiagonal, 1, row)
+	} else {
+		print("\nThe main diagonal is found only in square matrices.")
+	}
+}
