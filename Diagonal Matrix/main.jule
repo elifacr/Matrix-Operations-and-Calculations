@@ -1,0 +1,69 @@
+use "std/conv"
+use "std/os"
+
+fn isDiagonalMatrix(matrix: [][]f64, size: int) {
+	mut control := true
+	mut i := 0
+	for i < size; i++ {
+		mut j := 0
+		for j < size; j++ {
+			if (i != j) {
+				if (matrix[i][j] != 0) {
+					control = false
+				}
+			}
+		}
+	}
+
+	if (control == true) {
+		print("The matrix is a diagonal matrix.")
+	} else if (control == false) {
+		print("The matrix is not a diagonal matrix.")
+	}
+}
+
+fn printMatrix(matrix: [][]f64, row: int, column: int) {
+	mut i := 0
+	for i < row; i++ {
+		mut j := 0
+		for j < column; j++ {
+			print(matrix[i][j])
+			print(" ")
+		}
+		print("\n")
+	}
+	print("\n")
+}
+
+fn main() {
+	print("Enter the number of rows of the matrix: ")
+	row := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("Enter the number of columns of the matrix: ")
+	column := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	if (row == column) {
+		mut matrix := make([][]f64, row)
+		for i in matrix {
+			matrix[i] = make([]f64, column)
+		}
+
+		print("\nEnter the matrix:\n")
+		mut i := 0
+		for i < row; i++ {
+			print("Row ")
+			print(i + 1)
+			print(":\n")
+			mut j := 0
+			for j < column; j++ {
+				matrix[i][j] = conv::ParseFloat(os::Stdin().ReadLine()!, 64)!
+			}
+		}
+
+		print("\nMatrix:\n")
+		printMatrix(matrix, row, column)
+		isDiagonalMatrix(matrix, row)
+	} else {
+		print("\nThe matrix is not a square matrix.")
+	}
+}
