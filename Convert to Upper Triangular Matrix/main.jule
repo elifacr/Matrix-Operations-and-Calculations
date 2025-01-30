@@ -1,0 +1,138 @@
+use "std/conv"
+use "std/os"
+
+// Exchange any two rows.
+fn rowSwap(mut resultMatrix: [][]f64, row1: int, row2: int, row: int, column: int) {
+	mut i := 0
+	for i < column; i++ {
+		resultMatrix[row1][i], resultMatrix[row2][i] = resultMatrix[row2][i], resultMatrix[row1][i]
+	}
+
+	print("\nR")
+	print(row1 + 1)
+	print(" <--> ")
+	print("R")
+	print(row2 + 1)
+	print("\n")
+	printMatrix(resultMatrix, row ,column)
+	print("\n\n")
+}
+
+// Multiply any row by a constant.
+fn scalarMultiplication(mut resultMatrix: [][]f64, row1: int, row: int, column: int, number: f64) {
+	mut i := 0
+	for i < column; i++ {
+		resultMatrix[row1][i] *= number
+	}
+	
+	print("\n")
+	print(number)
+	print(" R")
+	print(row1 + 1)
+	print(" --> R")
+	print(row1 + 1)
+	print("\n")
+	printMatrix(resultMatrix, row ,column)
+	print("\n\n")
+}
+
+// Add a multiple of one row to another row.
+fn rowSum(mut resultMatrix: [][]f64, row1: int, row2: int, row: int, column: int, number: f64) {
+	mut i := 0
+	for i < column; i++ {
+		resultMatrix[row1][i] = resultMatrix[row2][i]*number + resultMatrix[row1][i]
+	}
+
+	print("\n")
+	print(number)
+	print(" R")
+	print(row2 + 1)
+	print(" + R")
+	print(row1 + 1)
+	print(" --> R")
+	print(row1 + 1)
+	print("\n")
+	printMatrix(resultMatrix, row ,column)
+	print("\n\n")
+}
+
+fn printMatrix(matrix: [][]f64, row: int, column: int) {
+	mut i := 0
+	for i < row; i++ {
+		mut j := 0
+		for j < column; j++ {
+			print(matrix[i][j])
+			print(" ")
+		}
+		print("\n")
+	}
+}
+
+
+fn convertToUpperTriangularMatrix(mut resultMatrix: [][]f64, size: int) {
+	mut i := 0
+	for i < size; i++ {
+		mut j := 0
+		for j < size; j++ {
+			if (i == j) {
+				mut k := size - 1
+				for k > i; k-- {
+					if (resultMatrix[k][j] != 0) {
+						if (resultMatrix[k - 1][j] != 0) {
+							rowSum(resultMatrix, k, k - 1, size, size, -resultMatrix[k][j]/resultMatrix[k - 1][j])
+						} else if (resultMatrix[k - 1][j] == 0) {
+							rowSwap(resultMatrix, k, k - 1, size, size)
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+fn main() {
+	print("Enter the number of rows of the matrix: ")
+	row := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("Enter the number of columns of the matrix: ")
+	column := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	if (row != column) {
+		print("\nThe matrix is not a square matrix.\n")
+	} else {
+		mut matrix := make([][]f64, row)
+		for i in matrix {
+			matrix[i] = make([]f64, column)
+		}
+
+		print("\nEnter the matrix:\n")
+		mut i := 0
+		for i < row; i++ {
+			print("Row ")
+			print(i + 1)
+			print(":\n")
+			mut j := 0
+			for j < column; j++ {
+				matrix[i][j] = conv::ParseFloat(os::Stdin().ReadLine()!, 64)!
+			}
+		}
+
+		mut resultMatrix := make([][]f64, row)
+		for j in resultMatrix {
+			resultMatrix[j] = make([]f64, column)
+		}
+
+		for k in resultMatrix {
+			resultMatrix[k] = append([]f64(nil), matrix[k]...)
+		}
+
+		print("\nMatrix:\n")
+		printMatrix(matrix, row, column)
+
+		convertToUpperTriangularMatrix(resultMatrix, row)
+		print("\nResult Matrix:\n")
+		printMatrix(resultMatrix, row, column)
+
+	}
+}
