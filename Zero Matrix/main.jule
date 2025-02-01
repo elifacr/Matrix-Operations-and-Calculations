@@ -1,0 +1,21 @@
+use "std/conv"
+use "std/os"
+
+fn createZeroMatrix(size: int) {
+	mut i := 0
+	for i < size; i++{
+		mut j := 0
+		for j < size; j++ {
+			print("0 ")
+		}
+		print("\n")
+	}
+}
+
+fn main() {
+	print("Enter the size of the zero matrix: ")
+	size := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	println("Zero matrix:")
+	createZeroMatrix(size)
+}
