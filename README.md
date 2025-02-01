@@ -45,3 +45,14 @@ Performs operations and calculations on matrices.
 
 - ### <ins> **[Elementary Column Operations](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Elementary%20Column%20Operations)** </ins>
   
+- ### <ins> **[Find Main Diagonal](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Find%20Main%20Diagonal)** </ins>
+
+- ### <ins> **[Antisymmetric Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Antisymmetric%20Matrix)** </ins>
+
+- ### <ins> **[Scalar Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Scalar%20Matrix)** </ins>
+
+- ### <ins> **[Convert to Upper Triangular Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Convert%20to%20Upper%20Triangular%20Matrix)** </ins>
+
+- ### <ins> **[Diagonal Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Diagonal%20Matrix)** </ins>
+
+- ### <ins> **[Zero Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Zero%20Matrix)** </ins>
