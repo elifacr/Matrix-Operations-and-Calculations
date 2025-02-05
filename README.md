@@ -40,6 +40,7 @@ Performs operations and calculations on matrices.
      *This program checks whether the matrix is ​​symmetric or not and gives the result as screen output.*
   
 - ### <ins> **[Matrix Scalar Multiplication](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Matrix%20Scalar%20Multiplication)** </ins>
+     *Multiplies a matrix by a scalar number and prints the result to the screen.*
   
 - ### <ins> **[Elementary Row Operations](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Elementary%20Row%20Operations)** </ins>
 
