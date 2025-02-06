@@ -43,6 +43,12 @@ Performs operations and calculations on matrices.
      *Multiplies a matrix by a scalar number and prints the result to the screen.*
   
 - ### <ins> **[Elementary Row Operations](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Elementary%20Row%20Operations)** </ins>
+     *Depending on the selection, all three elementary row operations can be performed on the entered matrix and the result is printed on the screen.*          
+                              
+     > **Elementary Row Operations:**
+     > - Exchange any two rows.
+     > - Multiply any row by a constant.
+     > - Add a multiple of one row to another row.
 
 - ### <ins> **[Elementary Column Operations](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Elementary%20Column%20Operations)** </ins>
   
