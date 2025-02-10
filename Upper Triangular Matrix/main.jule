@@ -1,0 +1,71 @@
+use "std/conv"
+use "std/os"
+
+fn isUpperTriangularMatrix(matrix: [][]f64, row: int, column: int) {
+	mut i := 0
+	for i < row; i++ {
+		mut j := 0
+		for j < column; j++ {
+			if (i == j && i < row - 1) {
+				mut temp := i + 1
+				for temp < row; temp++ {
+					if matrix[temp][j] != 0 {
+						print("\nThe matrix is not a upper triangular matrix.")
+						ret
+					}
+				}
+			}
+		}
+	}
+	print("\nThe matrix is a upper triangular matrix.")
+}
+
+fn printMatrix(matrix: [][]f64, row: int, column: int) {
+	mut i := 0
+	for i < row; i++ {
+		mut j := 0
+		for j < column; j++ {
+			print(matrix[i][j])
+			print(" ")
+		}
+		print("\n")
+	}
+}
+
+fn main() {
+	print("Enter the number of rows of the matrix: ")
+	row := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	print("Enter the number of columns of the matrix: ")
+	column := conv::Atoi(os::Stdin().ReadLine()!)!
+
+	if (row == column && row > 1) {
+		mut matrix := make([][]f64, row)
+		for i in matrix {
+			matrix[i] = make([]f64, column)
+		}
+
+		print("\nEnter the matrix:\n")
+		mut i := 0
+		for i < row; i++ {
+			print("Row ")
+			print(i + 1)
+			print(":\n")
+			mut j := 0
+			for j < column; j++ {
+				matrix[i][j] = conv::ParseFloat(os::Stdin().ReadLine()!, 64)!
+			}
+		}
+		print("\nMatriX:\n")
+		printMatrix(matrix, row, column)
+
+		isUpperTriangularMatrix(matrix, row, column)
+	} else if (row != column && row > 1 && column > 1) {
+		print("\nThe matrix is not a square matrix.")
+	} else if (row == column && (row <= 1 || column <= 1)) {
+		print("\nThe number of rows and columns of the matrix must be greater than 0.")
+	} else if (row != column && (row <= 1 || column <= 1)) {
+		print("\nThe matrix is not a square matrix.")
+		print("\nThe number of rows and columns of the matrix must be greater than 0.")
+	}
+}
