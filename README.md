@@ -63,3 +63,7 @@ Performs operations and calculations on matrices.
 - ### <ins> **[Diagonal Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Diagonal%20Matrix)** </ins>
 
 - ### <ins> **[Zero Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Zero%20Matrix)** </ins>
+
+- ### <ins> **[Upper Triangular Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Upper%20Triangular%20Matrix)**</ins>
+
+- ### <ins> **[Lower Triangular Matrix](https://github.com/elifacr/Matrix-Operations-and-Calculations/tree/main/Lower%20Triangular%20Matrix)** </ins>
